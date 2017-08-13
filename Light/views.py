@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.shortcuts import redirect
 from .forms import LightControlForm
-from .lights import SingleLightControl
+from .lights import single_light_control
 
 # Create your views here.
 
@@ -69,7 +69,7 @@ def menu(request):
 @login_required
 def light_control(request):
     if request.method == 'POST':
-        SingleLightControl(14, request.POST['intensity'])
+        single_light_control(14, request.POST['intensity'])
 
     else:
         form = LightControlForm()
