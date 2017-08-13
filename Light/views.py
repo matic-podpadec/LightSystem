@@ -68,13 +68,10 @@ def menu(request):
 
 @login_required
 def light_control(request):
+    form = LightControlForm()
+
     if request.method == 'POST':
         single_light_control(14, request.POST['intensity'])
-        return HttpResponse("GJ")
-
-    else:
-        form = LightControlForm()
+        return render(request, "light_control.html", {'form': form})
 
     return render(request, 'light_control.html', {'form': form})
-
-
