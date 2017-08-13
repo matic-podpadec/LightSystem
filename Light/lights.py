@@ -8,7 +8,7 @@ def single_light_control(pin, intensity):
     GPIO.setup(pin, GPIO.OUT)
 
     light = GPIO.PWM(pin, 100)
-    light.start(intensity)
+    light.start(float(intensity))
 
     time.sleep(3)
 
