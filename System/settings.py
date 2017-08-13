@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'Light.apps.LightConfig',
+    # 'Light.apps.LightConfig',
+    'Light',
 ]
 
 MIDDLEWARE = [

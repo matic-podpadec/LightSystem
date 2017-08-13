@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <form id="register-form" action="/light/register" method="post" >
+            {%  csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
