@@ -4,6 +4,7 @@ import time
 
 
 def single_light_control(a, b):
+    GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
     pin = int(a)
     intensity = float(b)
