@@ -15,6 +15,7 @@ def single_light_control(a, b):
 
     else:
         if intensity > 0:
+            light = GPIO.PWM(pin, 100)
             light.ChangeDutyCycle(intensity)
 
         else:
