@@ -19,3 +19,5 @@ def single_light_control(a, b):
 
         else:
             GPIO.cleanup()
+
+    time.sleep(5)
