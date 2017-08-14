@@ -3,12 +3,19 @@ import sys
 import time
 
 
-def single_light_control(pin, intensity):
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setup(pin, GPIO.OUT)
+def single_light_control(a, b):
+    # GPIO.setmode(GPIO.BCM)
+    pin = int(a)
+    intensity = float(b)
 
-    light = GPIO.PWM(pin, 100)
-    # light.start(float(intensity))
-    light.ChangeDutyCycle(float(intensity))
-    time.sleep(5)
-    # GPIO.cleanup()
+    if GPIO.gpio_function(pin) is not GPIO.OUT:
+        GPIO.setup(pin, GPIO.OUT)
+        light = GPIO.PWM(pin, 100)
+        light.start(intensity)
+
+    else:
+        if intensity > 0:
+            light.ChangeDutyCycle(intensity)
+
+        else:
+            GPIO.cleanup()
