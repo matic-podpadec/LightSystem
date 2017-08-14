@@ -8,7 +8,7 @@ def single_light_control(a, b):
     pin = int(a)
     intensity = float(b)
 
-    if GPIO.gpio_function(pin) is not GPIO.OUT:
+    if GPIO.gpio_function(pin) != GPIO.OUT:
         GPIO.setup(pin, GPIO.OUT)
         light = GPIO.PWM(pin, 100)
         light.start(intensity)
