@@ -13,3 +13,4 @@ def single_light_control(a, b):
     light = GPIO.PWM(pin, 100)
 
     light.start(intensity)
+    time.sleep(5)
