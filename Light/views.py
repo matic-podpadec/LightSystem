@@ -9,6 +9,7 @@ from django.conf import settings
 from django.shortcuts import redirect
 from .forms import LightControlForm
 from .lights import single_light_control
+import _thread
 
 # Create your views here.
 
@@ -71,7 +72,7 @@ def light_control(request):
     form = LightControlForm()
 
     if request.method == 'POST':
-        single_light_control(14, request.POST['intensity'])
+        _thread.start_new(single_light_control, (14, request.POST['intensity']))
         return render(request, "light_control.html", {'form': form})
 
     return render(request, 'light_control.html', {'form': form})
