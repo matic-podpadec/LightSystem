@@ -69,7 +69,7 @@ def menu(request):
 
 @login_required
 def light_control(request):
-    form = AddLightForm()
+    form = LightControlForm()
 
     if request.method == 'POST':
         _thread.start_new(single_light_control, (14, request.POST['intensity']))
@@ -80,7 +80,7 @@ def light_control(request):
 
 @login_required
 def light_add(request):
-    form = AddLightForm()
+    form = LightAddForm()
 
     if request.method == 'POST':
         light_add(request.POST['name'], request.POST['pin'])

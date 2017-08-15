@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^register', views.register, name="register"),
     url(r'^menu', views.menu, name="menu"),
     url(r'^light_control', views.light_control, name="control"),
+    url(r'^light_add', views.light_add, name="light_add"),
 ]
