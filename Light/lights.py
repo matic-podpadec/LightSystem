@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import sys
 import time
+from .models import Light
 
 
 def single_light_control(a, b):
@@ -14,3 +15,8 @@ def single_light_control(a, b):
 
     light.start(intensity)
     time.sleep(5)
+
+
+def light_add(name, pin):
+    light = Light.objects.create(name, int(pin))
+    light.save()

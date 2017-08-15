@@ -76,3 +76,14 @@ def light_control(request):
         return render(request, "light_control.html", {'form': form})
 
     return render(request, 'light_control.html', {'form': form})
+
+
+@login_required
+def light_add(request):
+    form = AddLightForm()
+
+    if request.method == 'POST':
+        light_add(request.POST['name'], request.POST['pin'])
+        return HttpResponse("Light Saved")
+
+    return render(request, 'light_add.html', {'form': form})

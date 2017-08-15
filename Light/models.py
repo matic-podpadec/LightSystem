@@ -14,3 +14,8 @@ class Light(models.Model):
         validators=[MinValueValidator(1), MaxValueValidator(26)]
     )
     group = models.ForeignKey(Group)
+
+    @classmethod
+    def create(cls, name, pin):
+        light = cls(name=name, pin=pin)
+        return light
