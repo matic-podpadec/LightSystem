@@ -7,7 +7,7 @@ class LightControlForm(forms.Form):
     intensity = forms.IntegerField(100, 0)
 
 
-class SingleLightForm(ModelForm):
+class AddLightForm(ModelForm):
     class Meta:
         model = Light
-        fields = ['name', 'status', 'group']
+        fields = ['name', 'pin']

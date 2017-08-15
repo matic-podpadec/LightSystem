@@ -10,4 +10,7 @@ class Light(models.Model):
     status = models.SmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)]
     )
+    pin = models.SmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(26)]
+    )
     group = models.ForeignKey(Group)
