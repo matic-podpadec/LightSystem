@@ -7,7 +7,7 @@ from django.contrib.auth.models import Permission, User
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.shortcuts import redirect
-from .forms import LightControlForm
+from .forms import LightControlForm, SingleLightForm
 from .lights import single_light_control
 import _thread
 
@@ -69,7 +69,7 @@ def menu(request):
 
 @login_required
 def light_control(request):
-    form = LightControlForm()
+    form = SingleLightForm()
 
     if request.method == 'POST':
         _thread.start_new(single_light_control, (14, request.POST['intensity']))
