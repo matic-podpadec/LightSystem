@@ -7,7 +7,7 @@ from django.contrib.auth.models import Permission, User
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.shortcuts import redirect
-from .forms import LightControlForm, AddLightForm
+from .forms import LightControlForm, LightAddForm
 from .lights import single_light_control
 import _thread
 
