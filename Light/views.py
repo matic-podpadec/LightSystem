@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.generic import ListView
 from django.contrib.auth import login as auth_login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -9,6 +10,8 @@ from django.conf import settings
 from django.shortcuts import redirect
 from .forms import LightControlForm, LightAddForm
 from .lights import single_light_control, light_add_to_db
+from .models import Light
+
 import _thread
 
 # Create your views here.
@@ -69,6 +72,13 @@ def menu(request):
 
 @login_required
 def light_control(request):
+    lights = Light.objects.all()
+    st = ""
+    for light in lights:
+        st += light.name
+
+    return HttpResponse(st)
+    """    
     form = LightControlForm()
 
     if request.method == 'POST':
@@ -76,6 +86,10 @@ def light_control(request):
         return render(request, "light_control.html", {'form': form})
 
     return render(request, 'light_control.html', {'form': form})
+
+class LightsList(ListView):
+    model = Light
+"""
 
 
 # @login_required
@@ -89,3 +103,4 @@ def light_add(request):
         return HttpResponse("Light Saved")
 
     return render(request, 'light_add.html', {'form': form})
+
