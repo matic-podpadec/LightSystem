@@ -78,7 +78,7 @@ def light_control(request):
     return render(request, 'light_control.html', {'form': form})
 
 
-@login_required
+# @login_required
 def light_add(request):
     form = LightAddForm()
 
