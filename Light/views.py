@@ -81,10 +81,10 @@ def light_control(request):
 @login_required
 def light_add(request):
     form = LightAddForm()
-    name = request.POST['name']
-    pin = int(request.POST['pin'])
 
     if request.method == 'POST':
+        name = request.POST['name']
+        pin = int(request.POST['pin'])
         light_add(name, pin)
         return HttpResponse("Light Saved")
 
