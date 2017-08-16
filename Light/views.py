@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView
+from django.template import loader
 from django.contrib.auth import login as auth_login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
@@ -104,3 +105,11 @@ def light_add(request):
 
     return render(request, 'light_add.html', {'form': form})
 
+
+def light_index(request):
+    lights = Light.objects.all()
+    template = loader.get_template("light_index.html")
+    context = {
+        'lights': lights,
+    }
+    return HttpResponse(template.render(context, request))

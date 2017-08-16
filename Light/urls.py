@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^menu', views.menu, name="menu"),
     url(r'^light_control', views.light_control, name="control"),
     url(r'^light_add', views.light_add, name="light_add"),
+    url(r'^light_index', views.light_index, name="light_index"),
 ]

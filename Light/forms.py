@@ -3,7 +3,7 @@ from django.forms import ModelForm
 from Light.models import Light
 
 
-class LightControlForm(forms.Form):
+class LightControlForm(forms.Form,):
     intensity = forms.IntegerField(100, 0)
 
 
