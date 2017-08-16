@@ -17,5 +17,5 @@ class Light(models.Model):
 
     @classmethod
     def create(cls, name, pin):
-        light = cls(name=name, pin=pin)
+        light = cls(name=name, pin=pin, status=0)
         return light
