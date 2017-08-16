@@ -18,5 +18,5 @@ def single_light_control(a, b):
 
 
 def light_add_to_db(name, pin):
-    light = Light.objects.create(name, pin)
+    light = Light.create(name, pin)
     light.save()
