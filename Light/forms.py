@@ -10,4 +10,4 @@ class LightControlForm(forms.Form):
 class LightAddForm(ModelForm):
     class Meta:
         model = Light
-        fields = ['light_name', 'pin']
+        fields = ['name', 'pin']

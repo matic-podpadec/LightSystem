@@ -83,9 +83,9 @@ def light_add(request):
     form = LightAddForm()
 
     if request.method == 'POST':
-        light_name = request.POST['light_name']
+        name = request.POST['light_name']
         pin = int(request.POST['pin'])
-        light_add_to_db(light_name, pin)
+        light_add_to_db(name, pin)
         return HttpResponse("Light Saved")
 
     return render(request, 'light_add.html', {'form': form})
