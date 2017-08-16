@@ -13,7 +13,12 @@ class Light(models.Model):
     pin = models.SmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(26)]
     )
-    group = models.ForeignKey(Group)
+    group = models.ForeignKey(
+        Group,
+        models.SET_NULL,
+        blank=True,
+        null=True,
+    )
 
     @classmethod
     def create(cls, name, pin):

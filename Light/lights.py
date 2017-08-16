@@ -1,3 +1,4 @@
+
 import RPi.GPIO as GPIO
 import sys
 import time
@@ -20,3 +21,4 @@ def single_light_control(a, b):
 def light_add_to_db(name, pin):
     light = Light.create(name, pin)
     light.save()
+
