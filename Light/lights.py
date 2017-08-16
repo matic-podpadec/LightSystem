@@ -17,6 +17,6 @@ def single_light_control(a, b):
     time.sleep(5)
 
 
-def light_add(name, pin):
-    light = Light.objects.create(name, int(pin))
+def light_add_to_db(name, pin):
+    light = Light.objects.create(name, pin)
     light.save()

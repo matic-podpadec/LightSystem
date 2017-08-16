@@ -8,7 +8,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.shortcuts import redirect
 from .forms import LightControlForm, LightAddForm
-from .lights import single_light_control
+from .lights import single_light_control, light_add_to_db
 import _thread
 
 # Create your views here.
@@ -85,7 +85,7 @@ def light_add(request):
     if request.method == 'POST':
         light_name = request.POST['light_name']
         pin = int(request.POST['pin'])
-        light_add(light_name, pin)
+        light_add_to_db(light_name, pin)
         return HttpResponse("Light Saved")
 
     return render(request, 'light_add.html', {'form': form})
