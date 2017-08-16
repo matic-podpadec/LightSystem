@@ -6,7 +6,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 
 class Light(models.Model):
-    name = models.CharField(max_length=32)
+    light_name = models.CharField(max_length=32)
     status = models.SmallIntegerField(
         validators=[MinValueValidator(0), MaxValueValidator(100)]
     )
@@ -16,6 +16,6 @@ class Light(models.Model):
     group = models.ForeignKey(Group)
 
     @classmethod
-    def create(cls, name, pin):
-        light = cls(name=name, pin=pin)
+    def create(cls, light_name, pin):
+        light = cls(light_name=light_name, pin=pin)
         return light
