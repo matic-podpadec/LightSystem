@@ -9,10 +9,12 @@ from django.contrib.auth.models import Permission, User
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.shortcuts import redirect
-from .forms import LightControlForm, LightAddForm
-from .lights import single_light_control, light_add_to_db
-from .models import Light
-
+from django.core import serializers
+from .forms import LightControlForm, LightAddForm, GroupAddForm
+from .lights import single_light_control, light_add_to_db, light_get_all
+from .groups import group_add_to_db, group_get_all
+from .models import Light, LightGroup
+import re
 import _thread
 
 # Create your views here.
@@ -93,7 +95,7 @@ class LightsList(ListView):
 """
 
 
-# @login_required
+@login_required
 def light_add(request):
     form = LightAddForm()
 
@@ -106,6 +108,12 @@ def light_add(request):
     return render(request, 'light_add.html', {'form': form})
 
 
+def light_single(request):
+    pin = re.search(r'\d+', request.path).group()
+    light = Light.objects.get(pin=str(pin))
+    return HttpResponse(light)
+
+
 def light_index(request):
     lights = Light.objects.all()
     template = loader.get_template("light_index.html")
@@ -113,3 +121,51 @@ def light_index(request):
         'lights': lights,
     }
     return HttpResponse(template.render(context, request))
+
+
+def light_form(request):
+    if request.method == 'POST':
+        light_pin = int(request.POST['pin'])
+        light = Light.objects.filter(pin=light_pin)
+
+        form = LightControlForm(initial={
+            'id': light.id,
+            'name': light.name,
+            'status': light.status,
+            'pin': light.pin
+        })
+
+        return render('light_control', {'form': form})
+
+    else:
+        return HttpResponse("no worky")
+
+
+def light_managment(request):
+    lights = light_get_all()
+    json = serializers.serialize("json", lights)
+    return HttpResponse(json)
+
+
+def group_add(request):
+    form = GroupAddForm()
+
+    if request.method == 'POST':
+        name = str(request.POST['name'])
+        group_add_to_db(name)
+        return HttpResponse("Group saved")
+
+    return render(request, 'group_add.html', {'form': form})
+
+
+def group_managment(request):
+    groups = group_get_all()
+    print(groups[0].name)
+
+    names = groups.values_list("name")
+    print(names)
+
+    json = serializers.serialize("json", groups)
+    print(json)
+    return HttpResponse(json)
+

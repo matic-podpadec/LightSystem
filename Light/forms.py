@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from Light.models import Light
+from Light.models import Light, LightGroup
 
 
 class LightControlForm(forms.Form,):
@@ -11,3 +11,9 @@ class LightAddForm(ModelForm):
     class Meta:
         model = Light
         fields = ['name', 'pin']
+
+
+class GroupAddForm(ModelForm):
+    class Meta:
+        model = LightGroup
+        fields = ["name"]

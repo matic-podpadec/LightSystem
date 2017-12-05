@@ -20,7 +20,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
         <!-- Style -->
-        <link href="{% static "style/login.css" %}" type="text/css" rel="stylesheet" />
+        <!-- <link href="{% static "style/login.css" %}" type="text/css" rel="stylesheet" />-->
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -28,16 +28,22 @@
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="login2.html">Login</a>
-                        {% if 'login' in request.path %} {% include "login2.html"  %} {% endif %}
                     </li>
                     <li>
                         <a href="register.html">Register</a>
-                        {% if 'register' in request.path %} {% include "register.html"  %} {% endif %}
+
                     </li>
-
                 </ul>
-
             </div>
         </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    {% if 'login' in request.path %} {% include "login2.html"  %} {% endif %}
+                    {% if 'register' in request.path %} {% include "register.html"  %} {% endif %}
+                </div>
+            </div>
+        </div>
+
     </body>
 </html>
